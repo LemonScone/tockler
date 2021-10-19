@@ -71,6 +71,7 @@ if (gotTheLock || isMas) {
         }
     });
 
+    // NOTE 시작점
     app.on('ready', async () => {
         try {
             if (config.isDev) {

@@ -39,7 +39,7 @@ export function TimelinePage() {
 
     return (
         <MainLayout>
-            {showPaywall && <PaywallOverlay top={130} />}
+            {/* {showPaywall && <PaywallOverlay top={130} />} */}
             <VStack p={4} spacing={4}>
                 <CardBox>
                     <Flex>

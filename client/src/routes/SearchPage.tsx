@@ -84,7 +84,7 @@ export function SearchPage() {
 
     return (
         <MainLayout>
-            <PaywallOverlay />
+            {/* <PaywallOverlay /> */}
             <form onSubmit={onSubmit}>
                 <Flex p={3} flexDirection="column">
                     <CardBox position="relative" p={0}>
@@ -93,10 +93,7 @@ export function SearchPage() {
                             <SearchOptions setTimerange={setTimerange} timerange={timerange} />
                         </Box>
                         <HStack p={4}>
-                            <TypeSelect
-                                value={taskName}
-                                onChange={event => setTaskName(event.target.value)}
-                            />
+                            <TypeSelect value={taskName} onChange={event => setTaskName(event.target.value)} />
                             <Input
                                 placeholder="Search from all items"
                                 value={searchText}

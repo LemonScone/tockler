@@ -14,8 +14,8 @@ export const SettingsForm = () => {
             <AppForm />
 
             <AnalyserForm />
-            <Subscriptions />
-            <TrialInfo />
+            {/* <Subscriptions />
+            <TrialInfo /> */}
         </VStack>
     );
 };
