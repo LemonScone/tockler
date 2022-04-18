@@ -21,6 +21,7 @@ export const TrayMenuPlain = () => {
         EventEmitter.send('close-app');
     };
     const toggleMainWindow = () => {
+        console.log('⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ toggleMainWindow send');
         EventEmitter.send('toggle-main-window');
     };
 

@@ -23,9 +23,8 @@ export class AppTrackItemJob {
         try {
             if (this.checkIfIsInCorrectState()) {
                 let activeWindow = await activeWin();
-                let updatedItem: TrackItem = await this.saveActiveWindow(
-                    activeWindow ? activeWindow : {},
-                );
+                console.log('active win', activeWindow);
+                let updatedItem: TrackItem = await this.saveActiveWindow(activeWindow ? activeWindow : {});
 
                 if (!BackgroundUtils.isSameItems(updatedItem, this.lastUpdatedItem)) {
                     logger.debug('App and title changed. Analysing title');

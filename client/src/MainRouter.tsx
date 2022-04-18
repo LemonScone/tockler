@@ -19,6 +19,8 @@ export function MainRouter() {
     useGoogleAnalytics();
     const { setColorMode } = useColorMode();
 
+    //? toggleColorMode를 사용하면 안되는지?
+    //? light/dark 테마가 바뀔때마다 호출
     const changeActiveTheme = useCallback(
         themeName => {
             setColorMode(themeName);
@@ -35,6 +37,9 @@ export function MainRouter() {
         };
     }, [changeActiveTheme]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    //? ChartThemeProvider
+    //? RootProvider
+    //* Switch : 여러 Route를 감싸서 그 중 일치하는 라우터 하나만 렌더링 (react-router-dom v.6부터는 Routes로 바뀜)
     return (
         <ChartThemeProvider>
             <RootProvider>

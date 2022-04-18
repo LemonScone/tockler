@@ -21,6 +21,7 @@ export const sendToTrayWindow = (key, message = '') => {
 };
 
 export const sendToMainWindow = (key, message = '') => {
+    console.log('⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ sendToMainWindow');
     if (WindowManager.mainWindow) {
         WindowManager.mainWindow.webContents.send(key, message);
     } else {
@@ -39,6 +40,7 @@ export default class WindowManager {
         menuBuilder.buildMenu();
     }
 
+    //* BrowserWindow 인스턴스 생성 (mainWindow)
     static createMainWindow() {
         logger.debug('Creating main window.');
         const windowSize = config.persisted.get('windowsize') || { width: 1080, height: 720 };
@@ -57,6 +59,7 @@ export default class WindowManager {
         });
     }
 
+    //* BrowserWindow 인스턴스인 this.mainWindow에 로드할 URL과 이벤트 처리
     static setMainWindow(showOnLoad = true) {
         WindowManager.createMainWindow();
         const openMaximized = config.persisted.get('openMaximized') || false;
@@ -86,7 +89,7 @@ export default class WindowManager {
         });
 
         this.mainWindow.webContents.on('did-finish-load', () => {
-            logger.debug('did-finish-load');
+            logger.debug('⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ did-finish-load');
             if (showOnLoad) {
                 this.mainWindow.show();
                 this.mainWindow.focus();
@@ -142,7 +145,7 @@ export default class WindowManager {
                 WindowManager.setMainWindow();
             }
 
-            logger.debug('Toggling main window');
+            logger.debug('⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ Toggling main window');
 
             if (this.mainWindow.isVisible() && !this.mainWindow.isMinimized()) {
                 logger.debug('Hide main window');
@@ -172,9 +175,7 @@ export default class WindowManager {
          * https://github.com/maxogden/menubar
          */
 
-        const url = config.isDev
-            ? 'http://localhost:3000/#/trayApp'
-            : `file://${__dirname}/index.html#/trayApp`;
+        const url = config.isDev ? 'http://localhost:3000/#/trayApp' : `file://${__dirname}/index.html#/trayApp`;
 
         this.menubar = menubar({
             index: url,

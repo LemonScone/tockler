@@ -51,7 +51,7 @@
     "peerDependencies": {},
     "devDependencies": {
         "@babel/register": "^7.12.10",
-        "@types/jest": "^26.0.19",
+        "@types/jest": "^26.0.24",
         "@types/lodash": "^4.14.165",
         "@types/node": "^16.0.1",
         "@types/webdriverio": "^5.0.0",

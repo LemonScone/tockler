@@ -27,19 +27,26 @@ if (config.isDev) {
 }*/
 
 /* Single Instance Check */
+
+logger.debug('index.ts start !!!');
+
 const isMas = process.mas === true;
+
+//* 앱을 여러번 실행시켜도 하나의 창만 실행되도록 설정
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (gotTheLock || isMas) {
     const protocol = 'tockler';
     const deeplink = new Deeplink({ app, mainWindow: WindowManager.mainWindow, protocol });
 
+    //* 두번째 창이 호출된 경우
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
         logger.debug('Make single instance');
         WindowManager.openMainWindow();
     });
 
+    //* 버전 업데이트 확인
     AppUpdater.init();
 
     app.commandLine.appendSwitch('disable-renderer-backgrounding');
@@ -73,6 +80,7 @@ if (gotTheLock || isMas) {
 
     // NOTE 시작점
     app.on('ready', async () => {
+        logger.debug('app ready start !!!');
         try {
             if (config.isDev) {
                 await extensionsManager.init();
@@ -88,11 +96,13 @@ if (gotTheLock || isMas) {
 
             backgroundJob.init();
 
+            //* 시스템이 절전모드로 진입할 때 발생
             powerMonitor.on('suspend', function () {
                 logger.debug('The system is going to sleep');
                 backgroundService.onSleep();
             });
 
+            //* 시스템의 절전 모드가 해제될 때 발생
             powerMonitor.on('resume', function () {
                 logger.debug('The system is going to resume');
                 backgroundService.onResume().then(
@@ -105,6 +115,7 @@ if (gotTheLock || isMas) {
         }
     });
 
+    //* 딥링크로 앱이 열린 경우
     deeplink.on('received', (url) => {
         logger.debug(`Got app link (tockler://open or tockler://login), opening main window. Arrived from  ${url}`);
         const urlParsed = new UrlParse(url, false);

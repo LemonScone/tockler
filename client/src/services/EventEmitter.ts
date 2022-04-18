@@ -9,6 +9,7 @@ function send(name, ...args) {
     sendIpc(name, ...args);
 }
 function on(name, listener) {
+    Logger.debug(`on Event Listener : ,${name}`);
     onIpc(name, listener);
 }
 
